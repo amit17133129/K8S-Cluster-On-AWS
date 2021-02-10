@@ -6,10 +6,12 @@ In This doc you will be seeing how we can create a `Multi Node Kubernetes cluste
 
 > Now as the instances are launched then we can now configure the kubernetes setup in both of the instances. we will go one at a time. first let's ready the master with    [![Kubernetes](https://img.shields.io/badge/-Kubernetes-326CE5?style=flat-square&logo=Kubernetes&logoColor=ffffff)](https://kubernetes.io/)
 
-Now we need to install docker first. As i am using `Amazon Linux 2` ami so you can install dok=cker using `yum install docker`. After installing docker you can check the status and make the *docker enable*. So, every time when we start the OS it will be already in the started state.
+Now we need to install docker first. As i am using `Amazon Linux 2` ami so you can install dokcker using `yum install docker`. After installing docker you can check the status and make the *docker enable*. So, every time when we start the OS it will be already in the started state.
 ![Enabling Docker](https://github.com/amit17133129/K8S-Cluster-On-AWS/blob/main/MasterNode/enable%20docker.jpg?raw=true)
 
-Now we can proceed with installing *kubelet* and *kubeadm*.  
+Now we can proceed with installing *kubelet* and *kubeadm*.
+
+Link for the Kubeadm Installation Guide: https://kubernetes.io/docs/setup/production-environment/tools/kubeadm/install-kubeadm/
 1. Kubelet: 
 The kubelet is the primary "node agent" that runs on each node. It can register the node with the apiserver using one of: the hostname; a flag to override the hostname; or specific logic for a cloud provider.
 2. Kubeadm:
@@ -134,6 +136,7 @@ Now go to master and then run `kubectl get nodes` then you will find that slave 
 
 As you can see we have master and slave node as well. To make this ready we need to make the `overlay connection` between master and slave. we need to use flannel plugin.
 flannel is a plugin that gives a facility of `overlay network`.
+<br>`kubectl apply -f https://raw.githubusercontent.com/coreos/flannel/master/Documentation/kube-flannel.yml`
 ![flannel](https://github.com/amit17133129/K8S-Cluster-On-AWS/blob/main/MasterNode/flannel.jpg?raw=true)
 Now if you see that the master and slaves are both in the ready states. Now we can deploy the page in the slave1. If you have many slave nodes then the pod will launched in any of the nodes using schedular program  provided by kubernetes.
 
