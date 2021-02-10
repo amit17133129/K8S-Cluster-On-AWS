@@ -6,10 +6,11 @@ In This doc you will be seeing how we can create a `Multi Node Kubernetes cluste
 
 > Now as the instances are launched then we can now configure the kubernetes setup in both of the instances. we will go one at a time. first let's ready the master with    [![Kubernetes](https://img.shields.io/badge/-Kubernetes-326CE5?style=flat-square&logo=Kubernetes&logoColor=ffffff)](https://kubernetes.io/)
 
-Now we need to install docker first. As i am using `Amazon Linux 2` ami so you can install dok=cker using `yum install docker`. After installing docker you can check the status and make the *docker enable*. So, every time when we start the OS it will be already in the started state.
+Now we need to install docker first. As i am using `Amazon Linux 2` ami so you can install dokcker using `yum install docker`. After installing docker you can check the status and make the *docker enable*. So, every time when we start the OS it will be already in the started state.
 ![Enabling Docker](https://github.com/amit17133129/K8S-Cluster-On-AWS/blob/main/MasterNode/enable%20docker.jpg?raw=true)
 
-Now we can proceed with installing *kubelet* and *kubeadm*.  
+Now we can proceed with installing *kubelet* and *kubeadm*.
+Link for the Kubeadm Installation Guide: (https://kubernetes.io/docs/setup/production-environment/tools/kubeadm/install-kubeadm/)
 1. Kubelet: 
 The kubelet is the primary "node agent" that runs on each node. It can register the node with the apiserver using one of: the hostname; a flag to override the hostname; or specific logic for a cloud provider.
 2. Kubeadm:
