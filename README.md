@@ -49,7 +49,7 @@ Now after restarting if you check the driver `docker info | grep Driver` then yo
 
 ![Changing Driver](https://github.com/amit17133129/K8S-Cluster-On-AWS/blob/main/MasterNode/changing%20driver.jpg?raw=true)
 
-Now we can proe=ceed further with installing `yum install iproute-tc` this will require to set the routing path.
+Now we can procceed further with installing `yum install iproute-tc` this will require to set the routing path.
 
 ![installing iproute-tc](https://github.com/amit17133129/K8S-Cluster-On-AWS/blob/main/MasterNode/iproute-tc.jpg?raw=true)
 
@@ -123,7 +123,7 @@ after that you need to restart docker so make the chnages successful. `systemctl
 After that we need to install iproute-tc software. this software is responsible to make the routings inside the master salve setup. To install `yum install iproute-tc`.
 ![installing iproute-tc](https://github.com/amit17133129/K8S-Cluster-On-AWS/blob/main/Slave%20Node/installing%20iproute-tc.jpg?raw=true)
 
-Now we need to chamge the iptable using this command `echo "1" > /proc/sys/net/bridge/bridge-nf-call-iptables`
+Now we need to change the iptable using this command `echo "1" > /proc/sys/net/bridge/bridge-nf-call-iptables`
 
 ![setting  bridge iptables to 1](https://github.com/amit17133129/K8S-Cluster-On-AWS/blob/main/Slave%20Node/setting%20bridge%20iproute%20to%201.jpg?raw=true)
 Now you can proceed with joining the slave with master. You can use the token given while initializing master. This tokens is given at one time m=by the master but you can create new token if you forget to save this tokens.
