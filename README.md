@@ -80,17 +80,34 @@ after installing docker we need to make docker enable. `systemctl enable docker 
 
 ![Enabling Dokcer](https://github.com/amit17133129/K8S-Cluster-On-AWS/blob/main/Slave%20Node/enabling%20docker%20in%20salve.jpg?raw=true)
 
+After enabling docker service, Make sure that the ``br_netfilter`` module is loaded. This can be done by running ``lsmod | grep br_netfilter``. To load it explicitly call sudo modprobe ``br_netfilter``. So run it.
+```
+cat <<EOF | sudo tee /etc/modules-load.d/k8s.conf
+br_netfilter
+EOF
+
+cat <<EOF | sudo tee /etc/sysctl.d/k8s.conf
+net.bridge.bridge-nf-call-ip6tables = 1
+net.bridge.bridge-nf-call-iptables = 1
+EOF
+sudo sysctl --system
+```
+
 After that we need to create a repository of kubernetes `vi /etc/yum.repos.d/kubernetes.repo` and write the command in that file 
-> 
-*`[kubernetes]
+```
+cat <<EOF | sudo tee /etc/yum.repos.d/kubernetes.repo
+[kubernetes]
 name=Kubernetes
 baseurl=https://packages.cloud.google.com/yum/repos/kubernetes-el7-\$basearch
 enabled=1
 gpgcheck=1
 repo_gpgcheck=1
 gpgkey=https://packages.cloud.google.com/yum/doc/yum-key.gpg https://packages.cloud.google.com/yum/doc/rpm-package-key.gpg
-exclude=kubelet kubeadm kubectl`*
-After saving this you can check the kubernetes repository is configured or not using `yum repolist`.
+exclude=kubelet kubeadm kubectl
+EOF
+```
+After saving this you can check the kubernetes repository is configured or not using `yum repolist
+
 
 ![K8S Repo](https://github.com/amit17133129/K8S-Cluster-On-AWS/blob/main/Slave%20Node/creating%20k8s%20repo%20in%20salve.jpg?raw=true)
 
