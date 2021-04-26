@@ -139,10 +139,16 @@ gpgkey=https://packages.cloud.google.com/yum/doc/yum-key.gpg https://packages.cl
 exclude=kubelet kubeadm kubectl
 EOF
 ```
-After saving this you can check the kubernetes repository is configured or not using `yum repolist
+After saving this you can check the kubernetes repository is configured or not using `yum repolist`
 
 
 ![K8S Repo](https://github.com/amit17133129/K8S-Cluster-On-AWS/blob/main/Slave%20Node/creating%20k8s%20repo%20in%20salve.jpg?raw=true)
+
+Set SELinux in permissive mode (effectively disabling it)
+```
+sudo setenforce 0
+sudo sed -i 's/^SELINUX=enforcing$/SELINUX=permissive/' /etc/selinux/config
+```
 
 Now we can proceed to install kubeadm. ensure `kubeadm` will install `kubectl` and `kubelet` also so now need to worry while installing kubectl and kubelet.
 you can install kubecadm using `yum install -y kubelet kubeadm kubectl --disableexcludes=kubernetes`. 
